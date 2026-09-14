@@ -22,9 +22,15 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@example.com',
         ]);
 
-        \App\Models\pesertalomba::Create([
-            'nama_peserta' => 'John Doe',
-            'email' => 'john.doe@example.com',
-        ]);
+        for ($i = 1; $i <= 100; $i++) {
+            \App\Models\pesertalomba::Create([
+                'nama_peserta' => 'Peserta ' . $i,
+                'email' => 'peserta' . $i . '@example.com',
+            ]);
+        }
+        // \App\Models\pesertalomba::Create([
+        //     'nama_peserta' => 'John Doe',
+        //     'email' => 'john.doe@example.com',
+        // ]);
     }
 }

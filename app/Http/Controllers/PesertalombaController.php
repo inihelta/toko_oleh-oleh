@@ -21,8 +21,7 @@ class PesertalombaController extends Controller
      */
     public function create()
     {
-        $pesertalomba = Pesertalomba::all();
-        return view('pesertalomba.create', compact('pesertalomba'));
+        return view('pesertalomba.create');
     }
 
     /**
@@ -30,7 +29,15 @@ class PesertalombaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama_peserta' => 'required',
+            'email' => 'required|email|unique:pesertalombas,email',
+        ]);
+
+        Pesertalomba::create($request->all());
+
+        return redirect()->route('pesertalomba.index')
+            ->with('success', 'Peserta Lomba created successfully.');
     }
 
     /**

@@ -3,37 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>page peserta lomba</title>
+    <title>Document</title>
 </head>
 <body>
-    <a href="{{ route('pesertalomba.create') }}">Add New Peserta Lomba (create)</a>
+    <form action="{{ route('pesertalomba.store') }}" method="POST">
+        @csrf
+        <div class="">
+            <label for="nama_peserta">Nama:</label>
+            <input type="text" name="nama_peserta" id="nama_peserta" required>
+        </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>No.</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($pesertalomba as $index => $peserta)
-                <tr>
-                    <td>{{ $index + 1 }}</td>
-                    <td>{{ $peserta->nama_peserta }}</td>
-                    <td>{{ $peserta->email }}</td>
-                    <td>
-                        <a href="{{ route('pesertalomba.edit', $peserta->id) }}">Edit</a>
-                        <form action="{{ route('pesertalomba.destroy', $peserta->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+        <div class="">
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email" required><br>
+        </div>
+
+        <button type="submit">Submit</button>
+    </form>
 </body>
 </html>
