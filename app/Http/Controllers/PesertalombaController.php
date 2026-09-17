@@ -37,7 +37,7 @@ class PesertalombaController extends Controller
         Pesertalomba::create($request->all());
 
         return redirect()->route('pesertalomba.index')
-            ->with('success', 'Peserta Lomba created successfully.');
+            ->with('success', 'Data added.');
     }
 
     /**
