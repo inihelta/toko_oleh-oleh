@@ -26,5 +26,9 @@ class DatabaseSeeder extends Seeder
             'nama_peserta' => 'John Doe',
             'email' => 'john.doe@example.com',
         ]);
+
+        $this->call([
+            GameSeeder::class,
+        ]);
     }
 }

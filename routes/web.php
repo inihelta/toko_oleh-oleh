@@ -16,3 +16,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::resource('pesertalomba', \App\Http\Controllers\PesertalombaController::class);
+Route::resource('games', \App\Http\Controllers\GameController::class);
