@@ -45,7 +45,8 @@ class PesertalombaController extends Controller
      */
     public function show(pesertalomba $pesertalomba)
     {
-        //
+        $pesertalomba = Pesertalomba::findOrFail($pesertalomba->id);
+        return view('pesertalomba.show', compact('pesertalomba'));
     }
 
     /**
@@ -53,7 +54,8 @@ class PesertalombaController extends Controller
      */
     public function edit(pesertalomba $pesertalomba)
     {
-        //
+        $pesertalomba = Pesertalomba::findOrFail($pesertalomba->id);
+        return view('pesertalomba.edit', compact('pesertalomba'));
     }
 
     /**
@@ -61,14 +63,26 @@ class PesertalombaController extends Controller
      */
     public function update(Request $request, pesertalomba $pesertalomba)
     {
-        //
+        $request->validate([
+            'nama_peserta' => 'required',
+            'email' => 'required|email|unique:pesertalombas,email,' . $pesertalomba->id,
+        ]);
+
+        $pesertalomba->update($request->all());
+
+        return redirect()->route('pesertalomba.index')
+            ->with('success', 'Data updated.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(pesertalomba $pesertalomba)
+    public function destroy(Int $id)
     {
-        //
+        $peserta = Pesertalomba::findOrFail($id);
+        $peserta->delete();
+
+        return redirect()->route('pesertalomba.index')
+            ->with('success', 'Data deleted.');
     }
 }

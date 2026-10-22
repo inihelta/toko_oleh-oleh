@@ -14,7 +14,7 @@
                 <th>No.</th>
                 <th>Name</th>
                 <th>Email</th>
-                <th>Action</th>
+                {{-- <th>Action</th> --}}
             </tr>
         </thead>
         <tbody>
@@ -24,6 +24,7 @@
                     <td>{{ $peserta->nama_peserta }}</td>
                     <td>{{ $peserta->email }}</td>
                     <td>
+                        <a href="{{ route('pesertalomba.show', $peserta->id) }}">Detail</a>
                         <a href="{{ route('pesertalomba.edit', $peserta->id) }}">Edit</a>
                         <form action="{{ route('pesertalomba.destroy', $peserta->id) }}" method="POST" style="display:inline;">
                             @csrf
